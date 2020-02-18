@@ -61,8 +61,7 @@ public class Score : MonoBehaviour
         {
             this.score += 10;
 
-            //ScoreText獲得した点数を表示(追加)
-            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
+           
 
         }
         else if (other.gameObject.tag == "LargeStarTag")
@@ -71,16 +70,13 @@ public class Score : MonoBehaviour
 
             this.score += 20;
 
-            //ScoreText獲得した点数を表示(追加)
-            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
 
         }
         else if(other.gameObject.tag == "SmallCloudTag" || other.gameObject.tag == "LargeCloudTag")
         {
             this.score += 30;
 
-            //ScoreText獲得した点数を表示(追加)
-            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
+            
 
         }
 
