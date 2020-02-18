@@ -3,57 +3,90 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score: MonoBehaviour {
-    //Materialを入れる
-    Material myMaterial;
+public class Score : MonoBehaviour
+{
+
     //scoreを表示するテキスト
-    public GameObject ScoreText;
+
+
+    private int score = 0;
+
+    //scoreを表示するテキスト
+    private GameObject scoreText;
+    private object collision;
+
+
+
+
+
+
+
+
+    // Use this for initialization
+    void Start()
     
-    private int score;
-    //角度
-    private int degree = 0;
-    //速度
-    private int speed = 10;
+
+        { //シーン中のGameOverTextオブジェクトを取得
+            this.scoreText = GameObject.Find("ScoreText");
+        }
+        
+
+        
+        
+
+    
 
 
-	// Use this for initialization
-	void Start () {
-        //シーン中のScoreTextオブジェクトを取得
-        this.ScoreText = GameObject.Find("ScoreText");
+
+
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+
+    //衝突時に呼ばれる関数
+    void OnCollisionEnter(Collision other)
+    {
+
+        Debug.Log(score);
+
+
 
         //タグによって与える得点を変える
-        if (tag == "SmallStarTag")
+        if (other.gameObject.tag == "SmallStarTag")
+           
+
         {
-            Debug.Log(10);
+            this.score += 10;
+
+            //ScoreText獲得した点数を表示(追加)
+            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
+
         }
-        else if (tag == "LargeStarTag")
+        else if (other.gameObject.tag == "LargeStarTag")
         {
-            Debug.Log(20);
-        }else if (tag == "SmallCloudTag" || tag == "LargeCloudTag")
-        {
-            Debug.Log(30);
+
+
+            this.score += 20;
+
+            //ScoreText獲得した点数を表示(追加)
+            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
+
         }
+        else if(other.gameObject.tag == "SmallCloudTag" || other.gameObject.tag == "LargeCloudTag")
+        {
+            this.score += 30;
+
+            //ScoreText獲得した点数を表示(追加)
+            this.scoreText.GetComponent<Text>().text = "score " + this.score + "pt";
+
+        }
+
        
-        
-       
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //ボールがオブジェクトに当たった場合
-        if (this.degree >= 0)
-        {
-            //角度を180に設定
-            this.degree -= this.speed;
-        }
-	}
-    //衝突時に呼ばれる関数
-    private void OnCollisionEnter(Collision other)
-    {
-        //角度を180に設定
-        this.degree = 180;
     }
+
 }
 
 
